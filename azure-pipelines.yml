@@ -4,24 +4,27 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/javascript
 
 trigger:
-- master
-
+  - master
+resources:
+  containers:
+    - container: my_container
+      image: circleci/node:latest-browsers
 pool:
-  vmImage: 'circleci/node:latest-browsers'
-jobs: lint and build
-- job:
-  steps:
-  - task: NodeTool@0
-    inputs:
-      versionSpec: '10.x'
-    displayName: 'Install Node.js'
-  - script: |
-      npm install
-      npm run lint
-      npm run build
-    displayName: 'npm install and build'
-- job:
-  - script: |
-      npm install
-      npm run test:all
-    displayName: 'test'
+  vmImage: "Ubuntu-16.04"
+jobs:
+  - job:
+    steps:
+      - task: NodeTool@0
+        inputs:
+          versionSpec: "10.x"
+        displayName: "Install Node.js"
+      - script: |
+          npm install
+          npm run lint
+          npm run build
+        displayName: "npm install and build"
+  - job:
+      - script: |
+          npm install
+          npm run test:all
+        displayName: "test"
