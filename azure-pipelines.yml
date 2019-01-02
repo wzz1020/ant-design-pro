@@ -16,13 +16,13 @@ jobs:
         inputs:
           versionSpec: "10.x"
         displayName: "Install Node.js"
-      - script: |
+      - script:
           npm install
           npm run lint
           npm run build
         displayName: "npm install and build"
   - job:
-      - script: |
+      - script:
           npm install
           npm run test:all
         displayName: "test"
