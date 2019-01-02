@@ -9,8 +9,6 @@ resources:
   containers:
     - container: my_container
       image: circleci/node:latest-browsers
-pool:
-  vmImage: "Ubuntu-16.04"
 jobs:
   - job:
     steps:
